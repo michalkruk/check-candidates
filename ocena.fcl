@@ -1,0 +1,50 @@
+FUNCTION_BLOCK ocena	// Definicja bloku (moze byc wiecej blokow w pliku)
+
+VAR_INPUT				// Definiuje zmienne wejsciowe
+	wiek : REAL;
+	iq : REAL;
+    doswiadczenie : REAL;
+END_VAR
+
+VAR_OUTPUT				// Definiuje zmienne wyjsciowe
+	ocena : REAL;
+END_VAR
+
+FUZZIFY wiek			// Zmienna wejsciowa 'wiek': {'mlody', 'średni wiek' , 'osoba starsza'}
+	TERM mlody := (18, 1) (28, 0) ; 
+	TERM sredni := (25, 0) (30,1) (38,1) (50,0);
+	TERM starszy := (45, 0) (90, 1);
+END_FUZZIFY
+
+FUZZIFY iq			// Zmienna wejsciowa 'iq': { 'niskie',średnie', 'wysokie' }
+	TERM niskie := (0, 1) (68, 1) (80,0) ;
+	TERM srednie := (70,0) (84,1) (110,1) (133,0);
+	TERM wysokie := (125,0) (210,1);
+END_FUZZIFY
+
+FUZZIFY doswiadczenie			// Zmienna wejsciowa 'doswiadczenie': { 'małe', 'optymalne', 'duże' }
+	TERM male := (0, 1) (1, 1) (3,0) ;
+	TERM optymalne := (1,0) (3,1) (6,1) (8,0);
+	TERM duze := (7,0) (9,1);
+END_FUZZIFY
+
+DEFUZZIFY ocena			// Zmienna wyjsciowa 'napiwek' : {'skromny', 'sredni', 'hojny' }
+	TERM slaby := (0,0) (5,1) (11,0);
+	TERM przecietny := (9,0) (15,1) (21,0);
+	TERM bardzo_dobry := (19,0) (25,1) (30,0);
+	METHOD : COG;		// Metoda defuzyfikacji - 'Center Of Gravity' - 'Sreodka ciezkosci'
+	DEFAULT := 0;		
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;			// Uzycie 'min' jako 'and' (implikuje uzycie 'max' jako 'or' dla zapewnienia praw DeMorgan'a)
+	ACT : MIN;			// Uzycie  'min' jako metody aktywacji
+	ACCU : MAX;			// Metoda agregacji - 'max'
+
+	RULE 1 : IF wiek IS starszy OR iq is niskie OR doswiadczenie is male THEN ocena IS slaby;
+	RULE 2 : IF iq is srednie or doswiadczenie is optymalne THEN ocena IS przecietny; 
+	RULE 3 : IF iq is wysokie OR doswiadczenie is duze THEN ocena IS bardzo_dobry;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+
