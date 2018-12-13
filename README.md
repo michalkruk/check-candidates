@@ -3,10 +3,10 @@ Program using Fuzzy library to check candidates for work using 3 factors (age ,i
 
 U can use project by using following comands:
 
-javac -cp jFuzzyLogic.jar ocena.java
+<b>javac -cp jFuzzyLogic.jar ocena.java</b>
 
 Usage on Windows
-java -cp jFuzzyLogic.jar;. ocena
+<b>java -cp jFuzzyLogic.jar;. ocena</b>
 
 Usage on  Linux
-java -cp jFuzzyLogic.jar:. ocena
+<b>java -cp jFuzzyLogic.jar:. ocena</b>
