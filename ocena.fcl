@@ -28,7 +28,7 @@ FUZZIFY doswiadczenie			// Zmienna wejsciowa 'doswiadczenie': { 'małe', 'optyma
 	TERM duze := (7,0) (9,1);
 END_FUZZIFY
 
-DEFUZZIFY ocena			// Zmienna wyjsciowa 'napiwek' : {'skromny', 'sredni', 'hojny' }
+DEFUZZIFY ocena			// Zmienna wyjsciowa 'ocena' : {'slaby', 'przecietny', 'bardzo dobry' }
 	TERM slaby := (0,0) (5,1) (11,0);
 	TERM przecietny := (9,0) (15,1) (21,0);
 	TERM bardzo_dobry := (19,0) (25,1) (30,0);
