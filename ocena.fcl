@@ -1,12 +1,12 @@
-FUNCTION_BLOCK ocena	// Definicja bloku (moze byc wiecej blokow w pliku)
+FUNCTION_BLOCK ocena	// Definicja bloku 
 
-VAR_INPUT				// Definiuje zmienne wejsciowe
+VAR_INPUT				// Zmienne wejsciowe
 	wiek : REAL;
 	iq : REAL;
     doswiadczenie : REAL;
 END_VAR
 
-VAR_OUTPUT				// Definiuje zmienne wyjsciowe
+VAR_OUTPUT				// Zmienne wyjsciowe
 	ocena : REAL;
 END_VAR
 
@@ -16,7 +16,7 @@ FUZZIFY wiek			// Zmienna wejsciowa 'wiek': {'mlody', 'średni wiek' , 'osoba st
 	TERM starszy := (45, 0) (90, 1);
 END_FUZZIFY
 
-FUZZIFY iq			// Zmienna wejsciowa 'iq': { 'niskie',średnie', 'wysokie' }
+FUZZIFY iq			// Zmienna wejsciowa 'iq': { 'niskie', średnie', 'wysokie' }
 	TERM niskie := (0, 1) (68, 1) (80,0) ;
 	TERM srednie := (70,0) (84,1) (110,1) (133,0);
 	TERM wysokie := (125,0) (210,1);
